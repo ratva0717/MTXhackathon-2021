@@ -1,0 +1,48 @@
+.App-header {
+    min-height: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(5px + 2vmin);
+    color: rgb(0, 0, 0);
+}
+
+.App-link {
+    color: #e2e9eb;
+}
+
+input[type="file"] {
+    background-color: #1a9eeb;
+    border: none;
+    color: rgb(255, 255, 255);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 40px 40px;
+    top: 50%;
+    /* display: none; */
+}
+
+.button {
+    background-color: #8fff83;
+    /* Green */
+    border: none;
+    color: rgb(39, 42, 43);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 10px 40px;
+}
+
+.p {
+    margin: 50px;
+    font-size: 72px;
+}

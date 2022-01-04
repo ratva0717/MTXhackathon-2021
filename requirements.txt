@@ -1,0 +1,5 @@
+flask
+pillow
+matplotlib
+tensorflow
+opencv-python
