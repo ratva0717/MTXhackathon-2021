@@ -42,7 +42,12 @@ input[type="file"] {
     margin: 10px 40px;
 }
 
-.p {
-    margin: 50px;
-    font-size: 72px;
+.App-header p {
+    margin: 40px;
+    font-size: 22px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.App-header h2 {
+    color: rgb(190, 61, 1);
 }

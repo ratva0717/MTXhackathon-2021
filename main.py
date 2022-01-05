@@ -19,6 +19,7 @@ def index():
 
 @app.route('/detect',methods=[ "GET",'POST'])
 def detect():
+    dic = {}
     if not request.method == "POST":
         return
     video = request.files['video']
@@ -33,8 +34,11 @@ def detect():
     print(os.path.join(uploads_dir, secure_filename(video.filename)))
     vid_path = os.path.join(uploads_dir, secure_filename(video.filename))
     video.save(vid_path)
-    frame(vid_path)
-    return "success"
+    conf, frames, classes = frame(vid_path)
+    dic["Conf"] = conf 
+    dic["Frame"] = frames 
+    dic["Class"] = classes 
+    return dic 
     
 def frame(video):
     videoFile = video
@@ -47,20 +51,20 @@ def frame(video):
         if (ret != True):
             break
         if (frameId % math.floor(frameRate) == 0):
-            print(frameId % math.floor(frameRate))
             filename = imagesFolder + "/image_" +  str(int(frameId)) + ".jpg"
             cv2.imwrite(filename, frame)
-            print("written")
+            print("Frames are being written")
     cap.release()
-    predict(imagesFolder)
+    conf, frames, classes = predict(imagesFolder)
     try:
         os.chdir("instance")
         shutil.rmtree('images', ignore_errors=True)
         os.mkdir("images")
         os.chdir("../")
     except:
-        print("Error")
+        print("Folder already exists")
     print ("Done!")
+    return conf, frames, classes
 
 def predict(img_path):
     class_names = ['Non-scoring', 'Scoring']
@@ -83,19 +87,10 @@ def predict(img_path):
         classes.append(class_names[np.argmax(score)])
         print("This image most likely belongs to {} with a {:.2f} percent confidence.".format(class_names[np.argmax(score)], 100 * np.max(score)))
         frame +=1
-    createPlot(conf, frames, classes)
+    return conf, frames, classes
 
-def createPlot(conf, frames, classes):
-    color = [] 
-    for val in classes:
-        if val == "Non-scoring":
-            color.append("yellow")
-        else:
-            color.append("green")
-    plot.bar(frames, conf, color = color, width=0.7)
-    plot.xlabel("Frames")
-    plot.ylabel("Confidence")
-    plot.savefig('static/image/plot.png')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
     

@@ -11,6 +11,8 @@
 <body>
   <div class="App">
     <header class="App-header">
+      <h2>Scoring Event Detection for Basketball Videos</h2>
+      <p> The input would be a 2 second long video clip, where the algorithm classifies into either of classes that is 1 representing Non-scoring event and 0 representing Scoring event.The video clips containing a scoring event show be Mp4 format and file size of 30MB. Green color code indicates non-scoring event and pink indicates scoring event.</p>
       <form id="upload-file">
         <input
           id="imageinput"
@@ -18,27 +20,26 @@
           name="image"
         />
       </form>
-      <button class="button" name="send" id="sendbutton" onclick="show()">Send</button>
+      <button class="button" name="send" id="sendbutton" onclick="show()">Detect</button>
     <img class="col-xl-6" id="target" src="static/image/loader.gif" alt="Picture of 1" width="200" height="200"/>
-      <div id="imageDiv">
+    <div id="imageDiv">
       </div>
+      <div id="card" class="w3-card-4" style="width:70%">
+        <header class="w3-container w3-light-grey">
+          <h3> The video file is segmented into frames and the output probabilities are listed below</h3>
+        </header>
+        <div class="w3-container">
+          <p id="text"></p>
+       </div>
+      </div>  
   </header>
   </div>
+  <script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
   <script>
     document.getElementById('sendbutton').onclick = function () {
       $("#target").show();
-      var size = document.getElementById('imageinput').files[0].size;
-      console.log(size);
-      if (size > 961454){
-        size = 31000;
-      }
-      else {
-        size = 8000;
-      }
-      setTimeout(function() {
-      $("#target").hide();
-      document.getElementById('imageDiv').innerHTML = '<div><br> <img width="600" height="400" src="static/image/plot.png">  <br><p>  </p> </div>'; 
-      }, size);
       input = $("#imageinput")[0];
         if (input.files && input.files[0]) {
           let formData = new FormData();
@@ -51,7 +52,49 @@
                 processData: false,
                 contentType: false,
                 success: function(data) {
-                    console.log(data);
+                    $("#target").hide();
+                    var Class = data['Class'];
+                    var frame = data['Frame'];
+                    var Conf = data['Conf'];
+                    var bgColor = [];
+                    for (let bg of Class) {
+                      if (bg == 'Non-scoring'){    
+                      bgColor.push("#A4DE02");
+                      }
+                      else {
+                        bgColor.push("#e8c3b9")
+                      }
+                    }
+                    $('#card').show();
+                    document.getElementById('imageDiv').innerHTML = '<div><br>  <canvas id="chart" width="1200" height="400"></canvas>  <br><p>  </p> </div>'; 
+                    new Chart(document.getElementById("chart"), {
+                      type: 'bar',
+                      data: {
+                        labels: frame,
+                        datasets: [
+                          {
+                            label: "Confidence Score",
+                            backgroundColor: bgColor,
+                            data: Conf,
+                            spanGaps: true
+                          }
+                        ]
+                      },
+                      options: {
+                        legend: { display: false },
+                        title: {
+                          display: true,
+                          text:  "Frames vs Confidence"
+                        },
+                        scales: {
+                          yAxes: [{
+                              ticks: {
+                                  beginAtZero: true
+                              }
+                          }]
+                      }
+                      }
+                      });
                 },
             });
         }
@@ -60,9 +103,17 @@
 <script>
   function hideFunction() {
     document.getElementById('target').style.display = 'none';
+    document.getElementById('card').style.display = 'none';
     console.log("loaded");
   }
   window.onload = hideFunction;
+</script>
+<script>
+  document.getElementById('imageinput').onclick = function () {
+    document.getElementById('chart').style.display = 'none';
+    document.getElementById('card').style.display = 'none';
+    console.log("chart disapperared");
+  }
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
