@@ -2,14 +2,14 @@
 FROM centos:7
 
 #Copy our files to the container
-COPY . ./AirRoute
+COPY . ./MTXhackathon
 
 #Install python and other programs required to run our app
 RUN yum install -y uwsgi which gcc
 RUN yum -y install python3 python3-devel
 
 #Change the working directory to /app
-WORKDIR /AirRoute
+WORKDIR /MTXhackathon
 
 #Changing the default python version from 2 to 3. We do this by first renaming the old python version and linking python filename to python3.6.
 RUN mv /usr/bin/python /usr/bin/python_old
