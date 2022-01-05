@@ -15,7 +15,7 @@ WORKDIR /AirRoute
 RUN mv /usr/bin/python /usr/bin/python_old
 RUN cd /usr/bin && ln -s python3.7 python
 
-RUN pip install --upgrade pip
+RUN pip3 install --upgrade pip
 #Install the required python packages listed in the requirements file
 RUN python3 -m pip install -r requirements.txt
 
