@@ -89,9 +89,5 @@ def predict(img_path):
         frame +=1
     return conf, frames, classes
 
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
     
     
