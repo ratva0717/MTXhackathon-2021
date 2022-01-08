@@ -73,7 +73,7 @@ def predict(img_path):
     frames = []
     img_height = 180 
     img_width = 180
-    model = tf.keras.models.load_model("model.h5")
+    model = tf.keras.models.load_model("model_250.h5")
     frame = 1
     for imgs in os.listdir(img_path):
         img = os.path.join(img_path, imgs)
