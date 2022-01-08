@@ -13,7 +13,7 @@ There is a colossal amount of video data for sports. The first step to employ th
 
 The data is pre-processed where the video files are segmented into frames and converted into grayscale. The training dataset is divided into train and validation set in 8:2 ratio and is taken for model training. Sequential model is developed with 3 layers of Conv2D followed by Dense layer, except the layer all other layers used ReLU activationa and the output layer uses sigmoid activation. To measure loss, a sparse categorical cross entropy is used and the model is trained for 250 epochs and the evaluation metrics are dicussed below.
 
-### Training Loss
+### Training Loss graph
 ![Loss curve](Loss.png)
 
 ## Evaluation 
@@ -26,7 +26,7 @@ The data is pre-processed where the video files are segmented into frames and co
 | `AUC` | `68.2` |
 | `F1-score` | `69.0` |
 
-### Accuracy
+### Accuracy graph
 ![Accuracy](Accuracy.png)
 ### ROC Curve 
 ![ROC](ROC.PNG)
