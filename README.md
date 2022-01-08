@@ -26,5 +26,17 @@ The data is pre-processed where the video files are segmented into frames and co
 | `AUC` | `68.2` |
 | `F1-score` | `69.0` |
 
-## Usage
+### Accuracy
+![Accuracy](Accuracy.png)
+### ROC Curve 
+![ROC](ROC.PNG)
 
+## Usage
+Download the code base and install all the requirements with following command.
+NOTE : Supported python runtime is 3.7 
+> pip install -r requiremnts.txt 
+
+Run the wsgi script file to start localhost runtime
+> python wsgi.py 
+
+To perform input operations, follow the server link to access the website. The results are shown in plot, indicating scoring and non-scoring probabilities.
