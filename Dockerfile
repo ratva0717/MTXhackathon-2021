@@ -6,6 +6,7 @@ COPY . ./MTXhackathon
 
 #Install python and other programs required to run our app
 RUN yum install -y uwsgi which gcc
+RUN yum install openssl-devel bzip2-devel libffi-devel zlib-devel -y
 RUN yum install -y wget 
 
 #Change the working directory to /app
@@ -13,6 +14,8 @@ WORKDIR /MTXhackathon
 RUN wget https://www.python.org/ftp/python/3.7.11/Python-3.7.11.tgz  
 RUN tar xzf Python-3.7.11.tgz 
 RUN cd Python-3.7.11 
+RUN ./configure --enable-optimizations 
+RUN yum install make -y
 RUN make altinstall 
 RUN cd ..
 RUN rm Python-3.7.11.tgz 
