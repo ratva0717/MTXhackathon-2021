@@ -35,11 +35,22 @@ The data is pre-processed where the video files are segmented into frames and co
 ![ROC](ROC.PNG)
 
 ## Usage
-Download the code base and install all the requirements with following command.
+
+To work locally, download the code base and install all the requirements with following command.
 NOTE : Supported python runtime is 3.7 
-> pip install -r requiremnts.txt 
+> pip install -r requirements.txt 
 
 Run the wsgi script file to start localhost runtime
 > python wsgi.py 
 
 To perform input operations, follow the server link to access the website. The results are shown in plot, indicating scoring and non-scoring probabilities.
+
+Also, use the docker image for project setup. With the below command, pull the image and run in a container 
+
+> docker pull ratva071701/mtx-hackathon:latest
+
+> source my-env/Scripts/activate
+
+> python3 wsgi.py
+
+Now, follow the link and access the website.
