@@ -6,10 +6,17 @@ COPY . ./MTXhackathon
 
 #Install python and other programs required to run our app
 RUN yum install -y uwsgi which gcc
-RUN yum -y install python3.7
+RUN yum install -y wget 
 
 #Change the working directory to /app
 WORKDIR /MTXhackathon
+RUN wget https://www.python.org/ftp/python/3.7.11/Python-3.7.11.tgz  
+RUN tar xzf Python-3.7.11.tgz 
+RUN cd Python-3.7.11 
+RUN ./configure --enable-optimizations 
+RUN make altinstall 
+RUN cd ..
+RUN rm Python-3.7.11.tgz 
 
 #Changing the default python version from 2 to 3. We do this by first renaming the old python version and linking python filename to python3.6.
 RUN mv /usr/bin/python /usr/bin/python_old
