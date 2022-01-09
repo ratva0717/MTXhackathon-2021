@@ -13,11 +13,9 @@ RUN yum install -y wget
 WORKDIR /MTXhackathon
 RUN wget https://www.python.org/ftp/python/3.7.11/Python-3.7.11.tgz  
 RUN tar xzf Python-3.7.11.tgz 
-RUN cd Python-3.7.11 
 RUN ./configure --enable-optimizations 
 RUN yum install make -y
 RUN make altinstall 
-RUN cd ..
 RUN rm Python-3.7.11.tgz 
 
 #Changing the default python version from 2 to 3. We do this by first renaming the old python version and linking python filename to python3.6.
