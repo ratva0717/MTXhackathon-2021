@@ -49,6 +49,8 @@ Also, use the docker image for project setup. With the below command, pull the i
 
 > docker pull ratva071701/mtx-hackathon:latest
 
+> docker run -it image_name /bin/bash
+
 > source my-env/Scripts/activate
 
 > python3 wsgi.py
