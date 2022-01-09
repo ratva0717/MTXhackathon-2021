@@ -6,7 +6,7 @@ COPY . ./MTXhackathon
 
 #Install python and other programs required to run our app
 RUN yum install -y uwsgi which gcc
-RUN yum -y install python3 python3-devel
+RUN yum -y install python3.7
 
 #Change the working directory to /app
 WORKDIR /MTXhackathon
