@@ -22,6 +22,7 @@ RUN rm Python-3.7.11.tgz
 RUN mv /usr/bin/python /usr/bin/python_old
 RUN cd /usr/bin && ln -s python3.7 python
 
+RUN yum install -y python3-pip
 RUN pip install --upgrade pip
 #Install the required python packages listed in the requirements file
 RUN python3 -m pip install -r requirements.txt
